@@ -1,4 +1,4 @@
-import { Scene } from "./components/Scene"
+import { Scene } from "./components/common/Scene.tsx"
 
 const App = () => {
   return (
