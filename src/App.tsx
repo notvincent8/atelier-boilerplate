@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { useRef } from "react"
 import FollowCursor from "@/components/common/FollowCursor.tsx"
-import { Scene } from "./components/common/Scene.tsx"
+import { Scene } from "@/components/common/Scene"
 
 const App = () => {
   const containerRef = useRef<HTMLDivElement>(null)
