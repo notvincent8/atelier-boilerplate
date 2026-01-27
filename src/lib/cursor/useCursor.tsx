@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useRef } from "react"
+import type { Cursor } from "@/lib/cursor/types.ts"
 
-type MousePosition = {
-  x: number
-  y: number
-}
 const useCursor = () => {
-  const [position, setPosition] = useState<MousePosition>({ x: 0, y: 0 })
+  const posRef = useRef<Cursor>({ x: 0, y: 0 })
 
   useEffect(() => {
-    const updateMousePosition = (event: MouseEvent) => {
-      setPosition({ x: event.clientX, y: event.clientY })
+    const onMove = (e: PointerEvent) => {
+      posRef.current.x = e.clientX
+      posRef.current.y = e.clientY
     }
 
-    globalThis.addEventListener("mousemove", updateMousePosition)
-    return () => globalThis.removeEventListener("mousemove", updateMousePosition)
+    globalThis.addEventListener("pointermove", onMove)
+    return () => globalThis.removeEventListener("pointermove", onMove)
   }, [])
 
-  return { position, getMousePosition: () => position }
+  return useMemo(() => {
+    return {
+      getPosition: () => posRef.current,
+    }
+  }, [])
 }
 
 export default useCursor
