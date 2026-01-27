@@ -1,8 +1,20 @@
-import { useEffect, useRef } from "react"
-import useCursor from "@/lib/cursor/useCursor.tsx"
+import { type CSSProperties, useEffect, useRef } from "react"
+import useCursor from "@/hooks/cursor/useCursor.tsx"
 import { lerp } from "@/lib/math.ts"
 
 const EASE = 0.12
+
+const DOT_STILE: CSSProperties = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: 10,
+  height: 10,
+  borderRadius: 999,
+  background: "white",
+  pointerEvents: "none",
+  willChange: "transform",
+}
 
 const FollowCursor = () => {
   const cursor = useCursor()
@@ -27,22 +39,7 @@ const FollowCursor = () => {
     return () => cancelAnimationFrame(raf)
   }, [cursor])
 
-  return (
-    <div
-      ref={dotRef}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: 10,
-        height: 10,
-        borderRadius: 999,
-        background: "white",
-        pointerEvents: "none",
-        willChange: "transform",
-      }}
-    />
-  )
+  return <div ref={dotRef} style={DOT_STILE} />
 }
 
 export default FollowCursor

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react"
-import type { Cursor } from "@/lib/cursor/types.ts"
+import type { Cursor } from "@/hooks/cursor/types.ts"
 
 const useCursor = () => {
   const posRef = useRef<Cursor>({ x: 0, y: 0 })
