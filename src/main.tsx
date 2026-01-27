@@ -4,6 +4,8 @@ import App from "./App"
 import "./index.css"
 import { ErrorBoundary } from "@/components/common/ErrorBoundary.tsx"
 
+import "./lib/gsap"
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ErrorBoundary>
